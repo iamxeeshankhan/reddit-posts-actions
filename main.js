@@ -110,18 +110,33 @@ const unsave_posts = async function () {
 
       const liBtnSave = hoverCard.querySelector("li[id='post-overflow-save']");
 
-      // Click the button
-      liBtnSave.querySelector("div[role='menuitem']").click();
+      // Get the text content of the button
+      const btnText = liBtnSave
+        .querySelector("div[role='menuitem']")
+        .querySelector("span.flex.items-center.gap-xs.min-w-0.shrink")
+        .querySelector("span.flex.flex-col.justify-center.min-w-0.shrink")
+        .querySelector("span.text-14").textContent;
 
-      stats.currentBatch++;
-      stats.totalProcessed++;
+      // Click the button only if the post is currently saved
+      // Prevent unsaving a post that is already unsaved
+      // Helps avoid a loop of saving and unsaving (state oscillation)
+      if (btnText === "Remove from saved") {
+        // Click the button
+        liBtnSave.querySelector("div[role='menuitem']").click();
 
-      console.log(
-        `✓ Unsaved post ${stats.currentBatch}/${batchSize} (Total: ${stats.totalProcessed})`
-      );
+        stats.currentBatch++;
+        stats.totalProcessed++;
 
-      // Wait a random delay before next iteration
-      await waitRandom(500, 1500); // 0.5–1.5 seconds
+        console.log(
+          `✓ Unsaved post ${stats.currentBatch}/${batchSize} (Total: ${stats.totalProcessed})`
+        );
+
+        // Wait a random delay before next iteration
+        await waitRandom(500, 1500); // 0.5–1.5 seconds
+      } else {
+        console.log("⚪ Post is already unsaved");
+      }
+      //
     } catch (error) {
       console.warn(
         `✗ Failed to unsave post ${stats.currentBatch + 1}:`,
@@ -134,23 +149,41 @@ const unsave_posts = async function () {
   console.log(
     `✅ Batch #${stats.totalBatches} complete: ${stats.currentBatch}/${batchSize} posts unsaved`
   );
+
+  // Processing completed, scroll to load more
   return true;
 };
 
 ///////////////////////////////////
 // Auto scroll the page to load more posts/articles
 ///////////////////////////////////
+
+let previousHeight = 0;
+let sameHeightCount = 0;
+
 async function auto_scroll() {
   // Unsave all currently loaded posts first
-  const success = await unsave_posts();
-
-  if (!success) {
-    console.log("⚠️ No posts to process. Retrying in 3 seconds...");
-    setTimeout(auto_scroll, 3000);
-    return;
-  }
+  await unsave_posts();
 
   console.log("⬇️ Scrolling to load more posts...\n");
+
+  // Get current scroll height before scrolling
+  const currentHeight = document.body.scrollHeight;
+
+  // Check if we've been at the same height for multiple attempts
+  if (currentHeight === previousHeight) {
+    sameHeightCount++;
+
+    // If height hasn't changed after 3 attempts, we've reached the end
+    if (sameHeightCount >= 3) {
+      console.log("✅ Unsaving all posts completed. No more posts to load.");
+      return;
+    }
+  } else {
+    // Height changed, reset counter
+    sameHeightCount = 0;
+    previousHeight = currentHeight;
+  }
 
   // Scroll to bottom smoothly
   window.scrollTo({
