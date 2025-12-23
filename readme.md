@@ -1,5 +1,12 @@
 This script programmatically navigates Reddit’s modern UI to locate and click the “Remove from saved” action on posts. The same traversal logic can be extended to perform other post actions in the future, such as Hide, Follow post, or Report, by targeting different menu items within the same overflow menu structure.
 
+## How to use
+1. Open your Reddit saved posts page: `https://www.reddit.com/user/<username>/saved/`
+2. Open Chrome DevTools by pressing **F12**.
+3. Copy all the code from `main.js` and paste it into the **Console** tab.
+4. Press **Enter** to run the script.
+5. DON'T CLOSE THE TAB
+
 ## Reddit "Unsave" Element Hierarchy (for analysis)
 
 This guide maps the nested structure of Reddit's interface to help maintainers update the script when the UI changes.
