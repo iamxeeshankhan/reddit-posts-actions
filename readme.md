@@ -19,17 +19,7 @@ Automate Unsaving or hiding posts with this Chrome extension!
   <img src="extension-in-use.png" width="45%">
 </p>
 
-## How to use
-
-### Option 1: Console
-
-1. Open your Reddit saved posts page: `https://www.reddit.com/user/<username>/saved/`
-2. Open Chrome DevTools by pressing **F12**.
-3. Copy all the code from `main.js` and paste it into the **Console** tab.
-4. Press **Enter** to run the script.
-5. DON'T CLOSE THE TAB
-
-### Option 2: Chrome Extension
+## How to use this extension
 
 - Download the Extension
 - Open Chrome Extensions Page
