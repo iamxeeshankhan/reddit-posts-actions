@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Reddit Posts Actions",
-  "version": "1.0.0",
-  "description": "Automate Reddit post actions - Unsave posts, and more coming soon!",
+  "version": "1.1.0",
+  "description": "Automate Reddit post actions - Unsave posts, hide posts, and unsave hidden posts!",
   "icons": {
     "16": "assets/icon16.png",
     "32": "assets/icon32.png",

@@ -9,8 +9,8 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   width: 380px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
+  background: #f8f9fa;
+  color: #202124;
   overflow-x: hidden;
 }
 
@@ -19,10 +19,10 @@ body {
 }
 
 .header {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: #ffffff;
   padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid #dadce0;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.1);
 }
 
 .header-content {
@@ -35,23 +35,19 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header-text h1 {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 4px;
-  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #202124;
 }
 
 .subtitle {
   font-size: 12px;
-  opacity: 0.9;
-  color: rgba(255, 255, 255, 0.8);
+  color: #5f6368;
 }
 
 .stats-section {
@@ -59,22 +55,22 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  background: #f8f9fa;
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 15px 10px;
+  background: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 16px 12px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .stat-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(60, 64, 67, 0.15);
+  border-color: #1a73e8;
 }
 
 .stat-icon {
@@ -83,37 +79,35 @@ body {
 }
 
 .stat-label {
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  opacity: 0.8;
+  color: #5f6368;
   margin-bottom: 6px;
   font-weight: 600;
 }
 
 .stat-value {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
-  background: linear-gradient(135deg, #ffffff 0%, #fff5e6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #1a73e8;
 }
 
 .status-message {
   margin: 0 20px 20px 20px;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  padding: 12px 16px;
+  background: #e8f0fe;
+  border: 1px solid #d2e3fc;
+  border-left: 4px solid #1a73e8;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .status-icon {
-  font-size: 20px;
+  font-size: 18px;
   flex-shrink: 0;
 }
 
@@ -121,26 +115,31 @@ body {
   font-size: 13px;
   font-weight: 500;
   flex: 1;
+  color: #202124;
 }
 
 .status-message.info {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.4);
+  background: #e8f0fe;
+  border-color: #d2e3fc;
+  border-left-color: #1a73e8;
 }
 
 .status-message.success {
-  background: rgba(34, 197, 94, 0.2);
-  border-color: rgba(34, 197, 94, 0.4);
+  background: #e6f4ea;
+  border-color: #c6e1c6;
+  border-left-color: #1e8e3e;
 }
 
 .status-message.warning {
-  background: rgba(251, 191, 36, 0.2);
-  border-color: rgba(251, 191, 36, 0.4);
+  background: #fef7e0;
+  border-color: #f9e6a5;
+  border-left-color: #f9ab00;
 }
 
 .status-message.error {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.4);
+  background: #fce8e6;
+  border-color: #f6aea9;
+  border-left-color: #d93025;
 }
 
 /* Control Buttons */
@@ -149,90 +148,107 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background: #f8f9fa;
 }
 
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 14px 20px;
+  gap: 8px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.15);
 }
 
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+.btn:hover {
+  box-shadow: 0 2px 8px rgba(60, 64, 67, 0.25);
+  transform: translateY(-1px);
 }
 
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.2);
 }
 
 .btn-icon {
   font-size: 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.btn span {
-  position: relative;
-  z-index: 1;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  background: #1a73e8;
   color: white;
-  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.5);
+  background: #1766c6;
 }
 
 .btn-primary:active {
-  transform: translateY(0);
+  background: #1557a8;
+}
+
+.btn-secondary {
+  background: #ea4335;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #d33426;
+}
+
+.btn-secondary:active {
+  background: #b92b1e;
+}
+
+.btn-accent {
+  background: #f9ab00;
+  color: #202124;
+}
+
+.btn-accent:hover {
+  background: #e39b00;
+}
+
+.btn-accent:active {
+  background: #d48f00;
 }
 
 .btn-tertiary {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #ffffff;
+  color: #5f6368;
+  border: 1px solid #dadce0;
 }
 
 .btn-tertiary:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+  background: #f8f9fa;
+  border-color: #bdc1c6;
+  color: #202124;
+}
+
+.btn-tertiary:active {
+  background: #f1f3f4;
 }
 
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Footer */
 .footer {
   padding: 20px;
-  background: rgba(0, 0, 0, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border-top: 1px solid #dadce0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,49 +258,37 @@ body {
 .github-link {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  color: white;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  color: #5f6368;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .github-link:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: #f8f9fa;
+  border-color: #bdc1c6;
+  color: #202124;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(60, 64, 67, 0.15);
 }
 
 .github-icon {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1);
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+  filter: invert(1) brightness(0.3);
 }
 
 .version {
   font-size: 11px;
-  opacity: 0.6;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Animations */
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.btn-primary:not(:disabled) {
-  animation: pulse 2s ease-in-out infinite;
+  color: #9aa0a6;
+  font-weight: 500;
 }
 
 /* Scrollbar */
@@ -293,14 +297,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: #f8f9fa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: #dadce0;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: #bdc1c6;
 }

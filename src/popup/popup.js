@@ -5,7 +5,8 @@
 
 // DOM elements
 const unsaveBtn = document.getElementById("unsaveBtn");
-
+const hideBtn = document.getElementById("hideBtn");
+const unsaveHiddenBtn = document.getElementById("unsaveHiddenBtn");
 const resetBtn = document.getElementById("resetBtn");
 const totalProcessedEl = document.getElementById("totalProcessed");
 
@@ -15,6 +16,10 @@ const statusMessage = document.getElementById("statusMessage");
 // State
 let isRunning = false;
 
+/**
+ * Update the statistics display in the popup
+ * @param {Object} stats - Stats object (totalProcessed, currentBatch, totalBatches, isRunning)
+ */
 function updateStats(stats) {
   totalProcessedEl.textContent = stats.totalProcessed || 0;
 
@@ -48,20 +53,28 @@ function updateStatus(message, type = "info") {
 
 /**
  * Update button states based on automation status
+ * Disables start buttons if automation is running
  */
 function updateButtonStates() {
   if (isRunning) {
+    // Disable both action buttons when any automation is running
     unsaveBtn.disabled = true;
-    unsaveBtn.style.opacity = "0.5";
-    unsaveBtn.textContent = "Running...";
+    hideBtn.disabled = true;
+    unsaveHiddenBtn.disabled = true;
   } else {
+    // Enable both buttons when no automation is running
     unsaveBtn.disabled = false;
-    unsaveBtn.style.opacity = "1";
-    unsaveBtn.textContent = "Unsave Posts";
+    hideBtn.disabled = false;
+    unsaveHiddenBtn.disabled = false;
   }
 }
 
-// Send message to active tab's content script
+/**
+ * Send message to active tab's content script
+ * @param {Object} message - The message object to send
+ * @returns {Promise<Object>} The response from the content script
+ * @throws {Error} If no active tab found or not on Reddit
+ */
 async function sendMessageToActiveTab(message) {
   try {
     const [tab] = await chrome.tabs.query({
@@ -103,29 +116,57 @@ async function sendMessageToActiveTab(message) {
   }
 }
 
-// unsave posts handler
-async function handleUnsave() {
+/**
+ * Generic action handler for buttons
+ * @param {string} actionType - Message type (UNSAVE_POSTS, HIDE_POSTS, etc.)
+ * @param {string} startMsg - Status message to show on start
+ * @param {string} successMsg - Status message to show on success
+ */
+async function handleAction(actionType, startMsg, successMsg) {
   try {
-    updateStatus("Unsaving posts...", "info");
-    const response = await sendMessageToActiveTab({ type: "UNSAVE_POSTS" });
+    updateStatus(startMsg, "info");
+    const response = await sendMessageToActiveTab({ type: actionType });
 
     if (response && response.success) {
       isRunning = true;
       updateButtonStates();
-      updateStatus("Posts unsaved successfully", "success");
+      updateStatus(successMsg, "success");
     } else {
-      throw new Error("Failed to unsave posts");
+      throw new Error("Failed to start automation");
     }
   } catch (error) {
     updateStatus(
-      error.message || "Failed to unsave posts. Make sure you are on Reddit.",
+      error.message || "Failed to perform action. Make sure you are on Reddit.",
       "error"
     );
-    console.log("Unsave error:", error);
+    console.log(`${actionType} error:`, error);
   }
 }
 
-// reset stats handler
+// Handler wrappers
+const handleUnsave = () =>
+  handleAction(
+    "UNSAVE_POSTS",
+    "Starting unsave automation...",
+    "Unsave automation running"
+  );
+const handleHide = () =>
+  handleAction(
+    "HIDE_POSTS",
+    "Starting hide automation...",
+    "Hide automation running"
+  );
+const handleUnsaveHidden = () =>
+  handleAction(
+    "UNSAVE_HIDDEN_POSTS",
+    "Starting unsave hidden automation...",
+    "Unsave hidden automation running"
+  );
+
+/**
+ * Handler for reset stats button
+ * Resets local and content script statistics
+ */
 async function handleReset() {
   try {
     // Reset local popup statistics (works even without Reddit tab)
@@ -150,7 +191,9 @@ async function handleReset() {
   }
 }
 
-// get stats handler
+/**
+ * Request current statistics from content script
+ */
 async function getStats() {
   try {
     const response = await sendMessageToActiveTab({ type: "GET_STATS" });
@@ -178,6 +221,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Event listeners
 unsaveBtn.addEventListener("click", handleUnsave);
+hideBtn.addEventListener("click", handleHide);
+unsaveHiddenBtn.addEventListener("click", handleUnsaveHidden);
 resetBtn.addEventListener("click", handleReset);
 
 // Initialize popup

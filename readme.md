@@ -1,9 +1,23 @@
 # Reddit Posts Actions
 
-This script/extension programmatically navigates Reddit’s modern UI to locate and click the “Remove from saved” action on posts. The same traversal logic can be extended to perform other post actions in the future, such as Hide, Follow post, or Report, by targeting different menu items within the same overflow menu structure.
+Automate Unsaving or hiding posts with this Chrome extension!
 
 [![GitHub](https://img.shields.io/badge/GitHub-iamxeeshankhan/reddit--posts--actions-blue?logo=github)](https://github.com/iamxeeshankhan/reddit-posts-actions)
-[![Version](https://img.shields.io/badge/version-1.0.0-green)]()
+[![Version](https://img.shields.io/badge/version-1.1.0-green)]()
+
+## ✨ Features
+
+- **Unsave Posts**: Automatically remove posts from your saved collection
+- **Hide Posts**: Bulk hide posts from your feed
+
+## 📸 Screenshots
+
+### Extension Interface
+
+<p align="center">
+  <img src="popup-ui-preview.png" width="45%">
+  <img src="extension-in-use.png" width="45%">
+</p>
 
 ## How to use
 
@@ -29,7 +43,11 @@ This script/extension programmatically navigates Reddit’s modern UI to locate 
 - Navigate to your saved posts
   - `https://www.reddit.com/user/{your-username}/saved/`
   - Or click your profile → Saved
-- Click the Reddit Posts Actions extension icon in your Chrome toolbar and then click on "Unsave Posts" button
+- Click the Reddit Posts Actions extension icon in your Chrome toolbar
+- Choose your action:
+  - Click **"Unsave Posts"** to remove posts from saved
+  - Click **"Hide Posts"** to hide posts from your feed
+  - Click **"Reset Stats"** to clear statistics
 
 ## Reddit "Unsave" Element Hierarchy (for analysis)
 
