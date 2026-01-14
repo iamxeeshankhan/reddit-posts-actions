@@ -9,6 +9,18 @@ Automate Unsaving or hiding posts with this Chrome extension!
 
 - **Unsave Posts**: Automatically remove posts from your saved collection
 - **Hide Posts**: Bulk hide posts from your feed
+- **Unsave Hidden Posts**: Remove posts that were hidden from your saved collection
+
+<div style="border: 2px solid #ff4444; background-color: rgba(255, 68, 68, 0.1); padding: 15px; border-radius: 8px; margin: 20px 0;">
+    <h3 style="margin-top: 0; color: #cc0000;">⚠️ Important Limitation</h3>
+    <p>Chrome pauses scripts in background tabs. To ensure this extension works:</p>
+    <ul>
+        <li><strong>Keep the Reddit tab active and focused.</strong></li>
+        <li><strong>Do not</strong> switch tabs or minimize the window.</li>
+        <li><strong>Prevent</strong> the screen from sleeping.</li>
+    </ul>
+    <p style="margin-bottom: 0; font-style: italic;">This is a browser restriction, not a bug. If these limitations are annoying, we recommend using <a href="https://github.com/iamxeeshankhan/reddit-posts-actions/blob/master/console.js">console.js</a>.</p>
+</div>
 
 ## 📸 Screenshots
 
@@ -19,7 +31,17 @@ Automate Unsaving or hiding posts with this Chrome extension!
   <img src="extension-in-use.png" width="45%">
 </p>
 
-## How to use this extension
+## How to use
+
+### Option 1: Console
+
+1. Open your Reddit saved posts page: `https://www.reddit.com/user/<username>/saved/`
+2. Open Chrome DevTools by pressing **F12**.
+3. Copy all the code from [`console.js`](https://github.com/iamxeeshankhan/reddit-posts-actions/blob/master/console.js) and paste it into the **Console** tab.
+4. Press **Enter** to run the script.
+5. DON'T CLOSE THE TAB
+
+### Option 2: Chrome Extension
 
 - Download the Extension
 - Open Chrome Extensions Page
